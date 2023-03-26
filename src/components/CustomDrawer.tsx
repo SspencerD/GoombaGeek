@@ -32,8 +32,6 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
     );
   };
 
-  console.log('Que llego en cartItems?', cartItems);
-
   return (
     <>
       <DrawerContentScrollView

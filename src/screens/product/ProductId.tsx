@@ -58,7 +58,6 @@ const ProductId = (props: any) => {
           if (resp.status === 200) {
             const data = resp.data;
             const result = data.amiibo;
-            console.log('que trae aqui en result?', result);
             setGetData(result);
             setLoading(false);
             setProductCheck({

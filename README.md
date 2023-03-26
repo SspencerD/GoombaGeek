@@ -10,5 +10,9 @@ Android , <b>Es muy importante</b> configurar esto , para que la aplicación cor
 para correr en está plataforma</b>
 # Detalles
 La  Api es bastante extensa por lo cual al momento de ingresar ,limite la conexión a que trajiera solamente 20 productos.
-si deseas ampliar tu busqueda debes modificar el Slice que está en la vista de HomeScreen.<b>Especificamente la linea 49 </b>
+si deseas ampliar tu busqueda debes modificar el Slice que está en la vista de HomeScreen.
+<b>Especificamente la linea 49 </b>
+<pre>
  setGetAllProducts(result.slice(0, 20));
+</pre>
+ 

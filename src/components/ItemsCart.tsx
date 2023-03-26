@@ -12,7 +12,6 @@ const ItemsCart = (props: any) => {
   const dispatch = useDispatch();
 
   const handleRemoveFormCart = (productId: string) => {
-    console.log('QUe llega aqui al handleRemove?', productId);
     dispatch(removeFromCart(productId));
   };
 
