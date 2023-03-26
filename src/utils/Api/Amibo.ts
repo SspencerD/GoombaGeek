@@ -11,3 +11,13 @@ export const getAllAmibos = async () => {
   }
   return response;
 };
+export const getDetailProduct = async (value: string) => {
+  const response = await Get(`${API_URL}/amiibo/?name=${value}`);
+
+  const status = response.status;
+
+  if (status !== 200) {
+    console.error('ERROR NETWORKING CONNECT API', response);
+  }
+  return response;
+};

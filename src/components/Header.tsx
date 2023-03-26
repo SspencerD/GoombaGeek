@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {View, Image, Text, TouchableWithoutFeedback} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, styles} from '../assets/css/Styles';
 
@@ -8,46 +8,49 @@ interface Props {
   arrowEnable?: boolean;
   imageSize?: number;
   ratioImage?: number;
+  goBack?: () => void;
 }
 const Header = (props: Props) => {
-  const {sizeIcon, arrowEnable, imageSize, ratioImage} = props;
+  const {sizeIcon, arrowEnable, imageSize, goBack} = props;
   return (
     <View
       style={{
-        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+
+        height: 120,
       }}>
       <View
         style={{
-          flex: 0.5,
-          justifyContent: 'flex-start',
+          flexDirection: 'row',
+          width: '10%',
+          marginLeft: '5%',
+          justifyContent: 'center',
           alignItems: 'center',
         }}>
         {arrowEnable && (
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableWithoutFeedback onPress={goBack}>
             <Icon
               name="arrow-left"
               size={sizeIcon ?? 30}
               color={Colors.white}
             />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         )}
       </View>
       <View
         style={{
-          flex: 2,
-          justifyContent: 'center',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
           alignItems: 'center',
-          marginRight: '10%',
+          width: '100%',
         }}>
         <Image
           source={require('../assets/img/Banner.png')}
           resizeMode="contain"
           style={{
-            width: imageSize ?? 450,
-            aspectRatio: ratioImage ?? 2,
+            width: imageSize ?? 350,
           }}
         />
       </View>

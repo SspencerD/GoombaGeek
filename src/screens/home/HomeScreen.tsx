@@ -1,6 +1,12 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
 import {Colors, styles} from '../../assets/css/Styles';
 import TextInputMaterialUI from '../../components/InputFieldMUI';
 import {getAllAmibos} from '../../utils/Api/Amibo';
@@ -21,7 +27,8 @@ interface Amiibo {
   type: string;
 }
 
-const HomeScreen = () => {
+const HomeScreen = (props: any) => {
+  const {navigation} = props;
   const [getAllProducts, setGetAllProducts] = useState<Amiibo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [limitData, setLimitData] = useState(20);
@@ -47,45 +54,6 @@ const HomeScreen = () => {
         console.error('error al traer los productos', err.message);
       });
   };
-
-  const Data: any = [
-    {
-      id: 1,
-      title: 'Producto 1',
-      image: 'https://picsum.photos/200/300',
-      dato1: 'lorem ipsum dolor sit amet',
-      dato2: 'lorem ipsum dolor sit amet',
-      dato3: 'lorem ipsum dolor sit amet',
-      dato4: 'lorem ipsum dolor sit amet',
-    },
-    {
-      id: 2,
-      title: 'Producto 2',
-      image: 'https://picsum.photos/200/300',
-      dato1: 'lorem ipsum dolor sit amet',
-      dato2: 'lorem ipsum dolor sit amet',
-      dato3: 'lorem ipsum dolor sit amet',
-      dato4: 'lorem ipsum dolor sit amet',
-    },
-    {
-      id: 3,
-      title: 'Producto 3',
-      image: 'https://picsum.photos/200/300',
-      dato1: 'lorem ipsum dolor sit amet',
-      dato2: 'lorem ipsum dolor sit amet',
-      dato3: 'lorem ipsum dolor sit amet',
-      dato4: 'lorem ipsum dolor sit amet',
-    },
-    {
-      id: 4,
-      title: 'Producto 4',
-      image: 'https://picsum.photos/200/300',
-      dato1: 'lorem ipsum dolor sit amet',
-      dato2: 'lorem ipsum dolor sit amet',
-      dato3: 'lorem ipsum dolor sit amet',
-      dato4: 'lorem ipsum dolor sit amet',
-    },
-  ];
 
   // eslint-disable-next-line react/no-unstable-nested-components
   function Search() {
@@ -138,22 +106,30 @@ const HomeScreen = () => {
           alignItems: 'center',
         }}>
         <FlatList
-          data={Data}
+          data={getAllProducts}
           extraData={limitData}
-          renderItem={Carousel}
-          keyExtractor={item => item.id}
+          renderItem={item => <Carousel item={item} {...props} />}
+          keyExtractor={item => item.tail}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          bounces={false}
+          bouncesZoom={false}
+          alwaysBounceHorizontal={false}
+          onRefresh={() => {
+            getProducts();
+            setRefreshList(true);
+          }}
+          refreshing={refreshList}
         />
       </View>
     );
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView horizontal={false} style={styles.container}>
       <Header />
       <Search />
       <Body />
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

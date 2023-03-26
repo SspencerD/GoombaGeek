@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "clean": "react-native start --reset-cache",
+    "cleanwin:force": "watchman watch-del-all && npx rimraf node_modules && yarn cache clean && yarn install",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
@@ -23,11 +24,16 @@
     "react-icons": "^4.8.0",
     "react-native": "0.71.4",
     "react-native-dotenv": "^3.4.8",
+    "react-native-flags": "^1.0.0",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-reanimated": "^2.14.4",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-svg": "^13.8.0",
+    "react-native-vector-icons": "^9.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -44,6 +50,7 @@
     "jest": "^29.2.1",
     "metro-react-native-babel-preset": "0.73.8",
     "prettier": "^2.4.1",
+    "react-native-svg-transformer": "^1.0.0",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.0.2"
   },
