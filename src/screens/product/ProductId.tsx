@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, View, Text, Image, FlatList, Modal} from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  FlatList,
+  Modal,
+  SafeAreaView,
+} from 'react-native';
 import {Colors, fonts, sizes, styles} from '../../assets/css/Styles';
 import Header from '../../components/Header';
 import {getDetailProduct} from '../../utils/Api/Amibo';
@@ -11,6 +19,7 @@ import {TextInput} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToCart} from '../../actions/cartActions';
 import {RootState} from '../../reducers/rootReducers';
+import AnimatedLottieView from 'lottie-react-native';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
@@ -515,7 +524,27 @@ const ProductId = (props: any) => {
     );
   }
 
-  return (
+  return loading ? (
+    <SafeAreaView style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignContent: 'center',
+          marginLeft: 10,
+        }}>
+        <AnimatedLottieView
+          source={require('../../assets/animations/tetris.json')}
+          autoPlay
+          loop
+          style={{
+            width: 350,
+            aspectRatio: 1,
+          }}
+        />
+      </View>
+    </SafeAreaView>
+  ) : (
     <ScrollView
       horizontal={false}
       style={styles.container}

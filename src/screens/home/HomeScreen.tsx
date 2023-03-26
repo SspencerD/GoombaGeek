@@ -14,6 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {FlatList} from 'react-native-gesture-handler';
 import Carousel from '../../components/Carousel';
 import Header from '../../components/Header';
+import AnimatedLottieView from 'lottie-react-native';
 
 interface Amiibo {
   amiiboSeries: string;
@@ -97,7 +98,16 @@ const HomeScreen = (props: any) => {
   }
 
   function Body() {
-    return (
+    return loading ? (
+      <AnimatedLottieView
+        source={require('../../assets/animations/tetris.json')}
+        autoPlay
+        loop
+        style={{
+          width: 450,
+        }}
+      />
+    ) : (
       <View
         style={{
           marginTop: '5%',
